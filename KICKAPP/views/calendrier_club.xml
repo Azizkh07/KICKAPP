@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_club_event_calendar" model="ir.ui.view">
+        <field name="name">club.event.calendar</field>
+        <field name="model">kickapp.club.event</field>
+        <field name="arch" type="xml">
+            <calendar string="Club Events" date_start="start_datetime" date_stop="end_datetime" color="club_id">
+                <field name="name"/>
+                <field name="event_type"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="coach_id"/>
+                <field name="club_id"/>
+            </calendar>
+        </field>
+    </record>
+    
+  
+
+    <record id="action_view_club_event_calendar" model="ir.actions.act_window">
+        <field name="name">Calendrier des Clubs</field>
+        <field name="res_model">kickapp.club.event</field>
+        <field name="view_mode">calendar,form,kanban</field>
+     
+    
+    </record>
+    
+    
+    </odoo>
+    

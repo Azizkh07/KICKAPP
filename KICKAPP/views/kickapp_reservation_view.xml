@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="kickapp_reservation_template" name="Réservation de Terrain">
+        <t t-call="website.layout">
+            
+            <div class="container mt-5">
+                <h2 class="text-center mb-4">Réservation de Terrain</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="card-title mb-0">Formulaire de Réservation</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="reservationForm" action="/create_reservation" method="POST">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="form-group mb-3">
+                                        <label for="terrain" class="form-label">Terrain</label>
+                                        <select class="form-control" id="terrain" name="terrain_id" required="true">
+                                            <t t-foreach="terrains" t-as="terrain">
+                                                <option t-att-value="terrain.id"><t t-esc="terrain.name"/></option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="date" class="form-label">Date</label>
+                                        <input type="text" class="form-control" id="date" name="date" required="true" readonly="readonly"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="heure_debut" class="form-label">Heure de Début</label>
+                                        <input type="time" class="form-control" id="heure_debut" name="heure_debut" required="true"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="duree" class="form-label">Durée (en heures)</label>
+                                        <input type="number" step="0.5" class="form-control" id="duree" name="duree" required="true"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Réserver</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        </t>
+    </template>
+</odoo>

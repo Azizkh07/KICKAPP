@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Gestion des joueurs -->
+    <record id="view_joueur_tree" model="ir.ui.view">
+        <field name="name">Vue Arborescente des Joueurs</field>
+        <field name="model">kickapp.joueur</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Nom"/>
+                <field name="age" string="Âge"/>
+                <field name="club_id" string="Club"/>
+                <field name="poste" string="Poste"/>
+                <field name="image" widget="image" options='{"size": [70, 70]}' string="Image"/>
+                <field name="email" string="Email"/>  <!-- Nouveau champ email -->
+                <field name="telephone" string="Téléphone"/>  <!-- Nouveau champ téléphone -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue pour les joueurs -->
+    <record id="view_joueur_form" model="ir.ui.view">
+        <field name="name">Formulaire des Joueurs</field>
+        <field name="model">kickapp.joueur</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Talent" bg_color="bg-success" 
+                    attrs="{'invisible': [('is_talent', '=', False)]}"/>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Ajoutez d'autres boutons ou actions ici si nécessaire -->
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" string="Nom"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="name" string="Nom"/>
+                        <field name="is_talent" invisible="1"/>
+                        <field name="age" string="Âge"/>
+                        <field name="club_id" string="Club"/>
+                        <field name="poste" string="Poste"/>
+                        <field name="image" widget="image" options='{"size": [70, 70]}' string="Image"/>
+                        <field name="email" string="Email"/>  <!-- Nouveau champ email -->
+                        <field name="telephone" string="Téléphone"/>  <!-- Nouveau champ téléphone -->
+                    </group>
+
+                    <notebook>
+                        <page string="Évaluations">
+                            <field name="evaluation_ids" widget="one2many_list">
+                                <!-- Spécifiez les champs à afficher pour chaque évaluation -->
+                                <tree>
+                                    <field name="coach_id" string="Entraîneur"/>
+                                    <field name="speed" string="Vitesse"/>
+                                    <field name="dribbling" string="Dribble"/>
+                                    <field name="matches_played" string="Matchs Joués"/>
+                                    <field name="goals" string="Buts"/>
+                                    <field name="total_rating" string="Note Totale"/>
+                                    <!-- Ajoutez d'autres champs d'évaluation si nécessaire -->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action pour le modèle Joueur -->
+    <record id="action_football_joueur" model="ir.actions.act_window">
+        <field name="name">Joueurs de Football</field>
+        <field name="res_model">kickapp.joueur</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="view_joueur_tree"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="club_dashboard_portal" name="Club Dashboard Portal">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>Club Dashboard</h1>
+                <t t-if="user.partner_id.club_id">
+                    <h2><t t-esc="user.partner_id.club_id.name"/></h2>
+                    <p>Subscription End Date: <t t-esc="user.partner_id.subscription_end_date"/></p>
+                    <h3>Tournaments</h3>
+                    <ul>
+                        <t t-foreach="tournaments" t-as="tournament">
+                            <li><t t-esc="tournament.name"/> - <t t-esc="tournament.start_date"/></li>
+                        </t>
+                    </ul>
+                </t>
+                <t t-else="">
+                    <p>You are not subscribed to any club.</p>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

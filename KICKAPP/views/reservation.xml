@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vue pour la réservation en ligne -->
+    <record id="view_football_reservation_form" model="ir.ui.view">
+        <field name="name">Formulaire de Réservation</field>
+        <field name="model">kickapp.reservation</field>
+        <field name="arch" type="xml">
+            <form string="Réservation">
+                <header>
+                    <button name="action_confirm_reservation" type="object" string="Confirmer" class="btn-primary" states="draft"
+                            confirm="Êtes-vous sûr de vouloir confirmer cette réservation ? "/>
+                    <button name="action_done" type="object" string="Terminé" class="btn-success"
+                            attrs="{'invisible': [('state','!=', 'confirmed')]}"/>
+                    <button name="action_cancel_reservation" type="object" string="Annuler" class="btn-danger"
+                            confirm="Êtes-vous sûr de vouloir annuler cette réservation ?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="terrain_id" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="terrain_id" string="Terrain"/>
+                        <field name="date" string="Date"/>
+                        <field name="heure_debut" string="Heure de Début" widget="time"/>
+                        <field name="duree" string="Durée"/>
+                        <field name="user_id" readonly="1"/>
+
+                        <field name="state" string="État"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="football_reservation_calendar">
+        <field name="name">Calendrier des réservations</field>
+        <field name="model">kickapp.reservation</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendrier des réservations" date_start="date" color="terrain_id" mode="month" quick_add="False">
+                <field name="terrain_id" string="Terrain"/>
+                <field name="date" string="Date"/>
+                <field name="heure_debut" string="Heure de Début"/>
+                <field name="duree" string="Durée"/>
+                <field name="user_id" readonly="1"/>
+
+                <field name="state" string="État"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Liste des réservations -->
+    <record id="view_football_reservation_tree" model="ir.ui.view">
+        <field name="name">Liste des Réservations</field>
+        <field name="model">kickapp.reservation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="terrain_id" string="Terrain"/>
+                <field name="date" string="Date"/>
+                <field name="heure_debut" string="Heure de Début"/>
+                <field name="duree" string="Durée"/>
+                <field name="user_id" readonly="1"/>
+
+                <field name="state" string="État"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour la réservation -->
+    <record id="action_football_reservation" model="ir.actions.act_window">
+        <field name="name">Réservation en Ligne</field>
+        <field name="res_model">kickapp.reservation</field>
+        <field name="view_mode">calendar,tree,form,kanban</field>
+        <field name="view_id" ref="view_football_reservation_tree"/>
+    </record>
+
+</odoo>

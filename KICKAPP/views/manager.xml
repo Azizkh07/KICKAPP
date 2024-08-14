@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_manager_form" model="ir.ui.view">
+        <field name="name">Formulaire du Manager</field>
+        <field name="model">kickapp.manager</field>
+        <field name="arch" type="xml">
+            <form string="Manager">
+                <sheet>
+                    <group>
+                        <field name="name" string="Nom"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_manager_tree" model="ir.ui.view">
+        <field name="name">Vue Arborescente des Managers</field>
+        <field name="model">kickapp.manager</field>
+        <field name="arch" type="xml">
+            <tree string="Managers">
+                <field name="name" string="Nom"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour ouvrir la vue formulaire -->
+    <record id="action_manager" model="ir.actions.act_window">
+        <field name="name">Manager</field>
+        <field name="res_model">kickapp.manager</field>
+        <field name="view_mode">form,tree,kanban</field>
+        <field name="view_id" ref="view_manager_tree"/>
+    </record>
+</odoo>

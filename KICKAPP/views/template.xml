@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="thank_you_template" name="Thank You">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h2>Merci pour votre réservation !</h2>
+                <p>Votre réservation a été enregistrée avec succès.</p>
+            </div>
+        </t>
+    </template>
+    <template id="template_success" name="Reservation Success">
+        <t t-call="website.layout">
+            <div class="container mt16 mb16">
+                <div class="alert alert-success" role="alert">
+                    Votre réservation a été créée avec succès!
+                </div>
+            </div>
+        </t>
+    </template>
+    <!-- your_module/views/template_error.xml -->
+<template id="template_error" name="Reservation Error">
+    <t t-call="website.layout">
+        <div class="container mt16 mb16">
+            <div class="alert alert-danger" role="alert">
+                <t t-esc="error" />
+            </div>
+        </div>
+    </t>
+</template>
+
+
+</odoo>

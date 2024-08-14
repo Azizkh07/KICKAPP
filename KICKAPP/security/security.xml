@@ -1,0 +1,37 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Accès en lecture pour les terrains -->
+        <record id="access_kickapp_terrain_portal" model="ir.model.access">
+            <field name="name">kickapp.terrain access for portal users</field>
+            <field name="model_id" ref="KICKAPP.model_kickapp_terrain"/>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Accès en lecture et création pour les réservations -->
+        <record id="access_kickapp_reservation_portal" model="ir.model.access">
+            <field name="name">kickapp.reservation access for portal users</field>
+            <field name="model_id" ref="KICKAPP.model_kickapp_reservation"/>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Règle d'accès pour limiter l'accès aux réservations d'un utilisateur -->
+        <record id="rule_kickapp_reservation_portal_user" model="ir.rule">
+            <field name="name">User Reservation Access</field>
+            <field name="model_id" ref="KICKAPP.model_kickapp_reservation"/>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+    </data>
+</odoo>

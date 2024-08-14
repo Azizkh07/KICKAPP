@@ -1,0 +1,19 @@
+.ui-state-reserved a {
+    background-color: red !important;
+    color: white !important;
+}
+
+.ui-state-unavailable a {
+    background-color: gray !important;
+    color: white !important;
+}
+
+.ui-state-available a {
+    background-color: green !important;
+    color: white !important;
+}
+
+.ui-state-disabled a {
+    background-color: lightgray !important;
+    color: darkgray !important;
+}

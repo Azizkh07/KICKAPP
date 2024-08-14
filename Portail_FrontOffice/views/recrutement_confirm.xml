@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="recruitment_confirmation_template" name="Recruitment Confirmation">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Recrutement Confirmé</h1>
+                        <p>Félicitations, votre demande de recrutement a été confirmée avec succès !</p>
+                        <p>Nom du candidat : <t t-out="recruitment_process.name"/></p>
+                        <p>Email du candidat : <t t-out="recruitment_process.email_from"/></p>
+                        <p>Téléphone du candidat : <t t-out="recruitment_process.partner_phone"/></p>
+                        <!-- Add more details about the recruitment process as needed -->
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

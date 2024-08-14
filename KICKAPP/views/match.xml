@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vue pour les matchs Kickapp -->
+    <record id="view_kickapp_match_form" model="ir.ui.view">
+        <field name="name">Formulaire de Match Kickapp</field>
+        <field name="model">kickapp.match</field>
+        <field name="arch" type="xml">
+            <form string="Match de Football">
+                <sheet>
+                    <group>
+                        <field name="tournament_id" string="Tournoi"/>
+                        <field name="date" string="Date"/>
+                        <field name="home_team_id" string="Équipe à Domicile"/>
+                        <field name="away_team_id" string="Équipe à l'Extérieur"/>
+                      
+                        
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue en arbre pour les matchs Kickapp -->
+    <record id="view_kickapp_match_tree" model="ir.ui.view">
+        <field name="name">Vue Arborescente des Matchs Kickapp</field>
+        <field name="model">kickapp.match</field>
+        <field name="arch" type="xml">
+            <tree string="Matchs">
+                <field name="date" string="Date"/>
+                <field name="home_team_id" string="Équipe à Domicile"/>
+                <field name="away_team_id" string="Équipe à l'Extérieur"/>
+              
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour ouvrir la vue des matchs Kickapp -->
+    <record id="action_kickapp_match" model="ir.actions.act_window">
+        <field name="name">Matchs Kickapp</field>
+        <field name="res_model">kickapp.match</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="view_kickapp_match_tree"/>
+    </record>
+
+</odoo>

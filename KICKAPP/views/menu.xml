@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+
+ <menuitem id="menu_football_root" name="KICK APP"/>
+
+ <menuitem id="menu_utilisateurs" name="Utilisateurs" parent="menu_football_root"/>
+ 
+ <menuitem id="menu_coach" name="Coach" parent="menu_utilisateurs"/>
+ <menuitem id="menu_football_coach" name="Entraîneurs" parent="menu_coach" action="action_football_coach"/>
+ <menuitem id="menu_football_joueur" name="Joueurs" parent="menu_coach" action="action_football_joueur"/>
+ <menuitem id="menu_football_club" name="Clubs" parent="menu_coach" action="action_football_club"/>
+ <menuitem id="menu_football_evaluation" name="Évaluations" parent="menu_coach" action="action_football_evaluation"/>
+ <menuitem id="menu_football_match" name="Matchs" parent="menu_coach" action="action_kickapp_match"/> 
+ <menuitem id="menu_football_tournoi" name="Tournois" parent="menu_coach" action="action_kickapp_tournament"/> 
+ <menuitem id="menu_club_event" name="Calendriers des Clubs" parent="menu_coach" action="action_view_club_event_calendar"/>
+
+ <menuitem id="menu_caissier" name="Caissier" parent="menu_utilisateurs"/>
+
+
+ <menuitem id="menu_pos" name="Point de vente" parent="menu_caissier" action="point_of_sale.action_pos_config_kanban"/>
+
+
+
+ <menuitem id="menu_Recruteur" name="Recruteur" parent="menu_utilisateurs"/>
+ <menuitem id="menu_recrutement" name="Recrutement" parent="menu_Recruteur" action="hr_recruitment.action_hr_job"/>
+ <menuitem id="menu_recrutement_analyse" name="Analyse Recrutement" parent="menu_Recruteur" action="hr_recruitment.hr_applicant_action_analysis"/>
+
+
+
+ <menuitem id="menu_emp" name="Employés KICKAPP" parent="menu_utilisateurs"/>
+ <menuitem id="menu_employees" name="Employés" parent="menu_emp" action="hr.open_view_employee_list_my"/>
+
+
+
+
+ <menuitem id="menu_siteweb" name="Site Web" parent="menu_football_root" action="website.website_preview"/>
+
+
+
+<menuitem id="menu_all_users" name="Utilisateurs" parent="menu_gestion" action="base.action_res_users"/>
+
+ 
+ <menuitem id="menu_gestion" name="Gestion" parent="menu_football_root"/>
+ <menuitem id="menu_football_terrain" name="Terrains" parent="menu_gestion" action="action_football_management"/>
+ <menuitem id="menu_football_reservation" name="Réservations" parent="menu_gestion" action="action_football_reservation"/>
+ <menuitem id="menu_football_abonnes_club" name="Abonnés des Clubs" parent="menu_gestion" action="action_kickapp_club_subscriber"/>
+<menuitem id="menu_football_Clients" name="Clients" parent="menu_gestion" action="kickapp_member_action"/>
+ <menuitem id="menu_calendrier" name="Calendrier" parent="menu_gestion" action="calendar.action_calendar_event"/>
+
+ <menuitem id="menu_sub" name="Abonnement" parent="menu_gestion" action="action_club_subscription"/> 
+
+ 
+ <menuitem id="menu_event" name="Événements" parent="menu_gestion" action="event.action_event_view"/>
+
+
+ 
+
+<menuitem id="menu_gestion_commerciale" name="Gestion commerciale" parent="menu_gestion" />
+
+<menuitem id="menu_sal" name="ventes" parent="menu_gestion_commerciale" action="sale.action_quotations_with_onboarding"/>
+<menuitem id="menu_inv" name="inventaire" parent="menu_gestion_commerciale" action="stock.stock_picking_type_action"/>
+<menuitem id="menu_acc" name="facturation" parent="menu_gestion_commerciale" action="account.action_move_out_invoice_type"/>
+
+<menuitem id="menu_param" name="Paramètres" parent="menu_football_root" action="base_setup.action_general_configuration"/>
+
+<menuitem id="menu_dashboard" name="Tableaux de Bord" parent="menu_football_root" action="spreadsheet_dashboard.ir_actions_dashboard_action"/>
+
+
+
+
+
+
+ 
+
+
+    <record id="kickapp_member_action" model="ir.actions.act_window">
+        <field name="name">Membre KICKAPP</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('membre','=','True')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Member!
+            </p>
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+
+
+</odoo>

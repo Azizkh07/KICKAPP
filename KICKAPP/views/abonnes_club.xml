@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue pour les abonnés des clubs -->
+    <record id="view_kickapp_club_subscriber_form" model="ir.ui.view">
+        <field name="name">kickapp.club.subscriber.form</field>
+        <field name="model">kickapp.club.subscriber</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string="Nom"/>
+                        <field name="email" string="Email"/>
+                        <field name="start_date" string="Date de début"/>
+                        <field name="expiration_date" string="Date d'expiration"/>
+                        <field name="club_id" string="ID du club"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kickapp_club_subscriber_tree" model="ir.ui.view">
+        <field name="name">kickapp.club.subscriber.tree</field>
+        <field name="model">kickapp.club.subscriber</field>
+        <field name="arch" type="xml">
+            <tree string="Abonnés des clubs">
+                <field name="name" string="Nom"/>
+                <field name="email" string="Email"/>
+                <field name="start_date" string="Date de début"/>
+                <field name="expiration_date" string="Date d'expiration"/>
+                <field name="club_id" string="ID du club"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour les abonnés des clubs -->
+    <record id="action_kickapp_club_subscriber" model="ir.actions.act_window">
+        <field name="name">Abonnés des clubs</field>
+        <field name="res_model">kickapp.club.subscriber</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="view_kickapp_club_subscriber_tree"/>
+    </record>
+
+    <!-- Élément de menu pour les abonnés des clubs -->
+
+</odoo>

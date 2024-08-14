@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="subscription_page_template" name="Subscription Page">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h1 class="text-center">S'abonner à  <t t-esc="club.name"/></h1>
+                <form action="/my/submit_subscribe_club" method="post" class="mt-4">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                    <input type="hidden" name="club_id" t-att-value="club.id"/>
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" name="name" class="form-control" required="True"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required="True"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="start_date">Date de debut </label>
+                        <input type="date" id="start_date" name="start_date" class="form-control" required="True"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiration_date">Date d'expiration</label>
+                        <input type="date" id="expiration_date" name="expiration_date" class="form-control" required="True"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">S'abonner</button>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

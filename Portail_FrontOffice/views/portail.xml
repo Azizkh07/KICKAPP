@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <template id="portal_my_home_kickapp" name="My Portal" customize_show="True" inherit_id="portal.portal_my_home" priority="1">  
+      <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Joueurs</t>
+                <t t-set="url" t-value="'/my/joueurs'"/>
+                <t t-set="placeholder_count" t-value="'joueurs_count'"/>
+            </t>
+    </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'Joueurs_list_view'" class="breadcrumb-item">Joueurs</li>
+            <li t-if="page_name == 'Joueurs_form_view'" class="breadcrumb-item">
+                <a href="/my/joueurs">Joueurs</a>
+            </li>
+
+            
+        </xpath>
+      
+    </template>
+
+
+    <template id="kickapp_joueurs_list_view_portal">
+        <t t-call="portal.portal_layout">
+          <t t-set="breadcrumbs_searchbar" t-value="True"/>
+          <t t-call="portal.portal_searchbar">
+            <t t-set="title">Joueurs</t>
+          </t>
+                <t t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                          <th class="text-center">ID</th>
+                          <th class="text-center">Photo</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Age</th>
+                            <th class="text-center">Poste</th>
+                            <th class="text-center">Equipe</th>
+                            <th class="text-center">Talent</th>
+                            <th class="text-center">Evaluation</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="joueurs" t-as="joueur">
+                            <tr>
+                              <td class="text-center">
+                                <a t-attf-href="/my/joueur/#{joueur.id}">
+                                    <t t-out="joueur.id"/>
+                                </a>
+                            </td>
+                            <td>
+                              <t t-if="joueur.image">
+                                <img t-attf-src="data:image/png;base64,{{joueur.image}}" alt="avatar" class="rounded-circle img-fluid"  style="width:50px;height:50px;"></img>
+
+                              </t>
+                            
+                              <t t-else="">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width:50px;height:50px;"/>
+
+                              </t>
+                            </td>
+                                <td class="text-center">
+                                    <a t-attf-href="/my/joueur/#{joueur.id}">
+                                        <t t-out="joueur.name"/>
+                                    </a>
+                                </td>
+                             
+                                <td class="text-center">
+                                    <a>
+                                        <t t-out="joueur.age"/>
+
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <a>
+                                        <t t-out="joueur.poste"/>
+
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <a>
+                                        <t t-out="joueur.club_id.name"/>
+
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                  <t t-if="joueur.is_talent">
+                                      <span class="badge bg-success">Talent</span>
+                                  </t>
+                                  <t t-else="">
+                                      <span class="badge bg-secondary">Non</span>
+                                  </t>
+                              </td>
+                              <td class="text-center">
+                                <t t-out="joueur.average_rating"/>
+                            </td>
+                            
+                         
+
+                            
+                            </tr>
+                        </t>
+                    </tbody>
+                </t>
+            </t>     
+            
+
+
+    </template>
+
+
+
+
+
+    <template id="kickapp_joueurs_form_view_portal" inherit_id="portal.portal_sidebar">
+         <xpath expr="//div[hasclass('o_portal_sidebar')]"  position="inside">
+            <t t-if="page_name == 'Joueurs_form_view'">
+                <section style="background-color: ;">
+                    <div class="container py-5">
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="card mb-4">
+                            <div class="card-body text-center">
+                              <t t-if="joueur.image">
+                                <img t-attf-src="data:image/png;base64,{{joueur.image}}" alt="avatar" class="rounded-circle img-fluid"  style="width:150px;"></img>
+
+                              </t>
+                            
+                              <t t-else="">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"/>
+
+                              </t>
+
+
+                              <h5 class="my-3"><t t-out="joueur.name"/></h5>
+                              <p class="text-muted mb-1">Joueur de Football</p>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-8">
+                          <div class="card mb-4">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <p class="mb-0">Nom</p>
+                                </div>
+                                <div class="col-sm-9">
+                                  <p class="text-muted mb-0"><t t-out="joueur.name"/></p>
+                                </div>
+                              </div>
+                              <hr/>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <p class="mb-0">Age</p>
+                                </div>
+                                <div class="col-sm-9">
+                                  <p class="text-muted mb-0"><t t-out="joueur.age"/></p>
+                                </div>
+                              </div>
+                            <hr/>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <p class="mb-0">Poste</p>
+                                </div>
+                                <div class="col-sm-9">
+                                  <p class="text-muted mb-0"><t t-out="joueur.poste"/></p>
+                                </div>
+                              </div>
+                              <hr/>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <p class="mb-0">Equipe</p>
+                                </div>
+                                <div class="col-sm-9">
+                                  <p class="text-muted mb-0"><t t-out="joueur.club_id.name"/></p>
+                                </div>
+                              </div>
+                            <hr/>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                  <p class="mb-0">Evaluation</p>
+                              </div>
+                              
+                              <div class="col-sm-9">
+                                  <p class="text-muted mb-0"><t t-out="joueur.average_rating"/></p>
+                              </div>
+                          </div>
+                          <hr/>
+                          <t t-if="joueur.is_talent">
+                              <div class="row">
+                               
+                                <div class="col-sm-12">
+                                  <form action="/my/submit_recruit_talent" method="POST">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                    <input type="hidden" name="name" t-att-value="joueur.name"/>
+                                    <input type="hidden" name="email" t-att-value="joueur.email"/>
+                                    <input type="hidden" name="telephone" t-att-value="joueur.telephone"/>
+                                      <button type="submit" class="btn btn-success">Recruter ce Talent</button>
+                                  </form>
+                              </div>
+                              </div>
+                          </t>
+
+
+                          
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dernière Évaluation</h5>
+                                    <t t-if="joueur.evaluation_ids">
+                                        <t t-set="last_evaluation" t-value="joueur.evaluation_ids.sorted(key=lambda r: r.create_date)[-1]" />
+                                        <div class="media align-items-center">
+                                            <!-- Afficher l'image du coach -->
+                                            <img t-if="last_evaluation.coach_id.image" t-att-src="'data:image/png;base64,' + str(last_evaluation.coach_id.image, 'utf-8')" alt="coach_avatar" class="mr-3 rounded-circle" style="width:50px;height:50px;"/>
+                                            <img t-else="" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="default_avatar" class="mr-3 rounded-circle" style="width:50px;height:50px;"/>
+                                            <div class="media-body">
+                                                <!-- Afficher le nom du coach -->
+                                                <h5 class="mt-0"><t t-out="last_evaluation.coach_id.name"/></h5>
+                                                <!-- Afficher la note -->
+                                                <p>Note: <t t-out="last_evaluation.total_rating"/></p>
+                                                <!-- Afficher les commentaires -->
+                                                <p>Commentaires: <t t-out="last_evaluation.feedback"/></p>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <p>Pas d'évaluation disponible</p>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              
+
+
+                    </div>
+                </section>
+             </t>
+         </xpath>
+    </template>
+    
+    
+
+</odoo>

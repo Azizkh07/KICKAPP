@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vue pour la gestion des terrains -->
+        <record id="view_football_terrain_form" model="ir.ui.view">
+            <field name="name">Formulaire de Gestion des Terrains</field>
+            <field name="model">kickapp.terrain</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!-- Ajoutez des boutons ou des actions ici -->
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!-- Ajoutez des boutons ou des actions supplémentaires ici -->
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" string="Nom"/>
+                                <field name="available" string="Disponible"/>
+                                <field name="capacity" string="Capacité"/>
+                                <field name="category" string="Catégorie"/>
+                                <field name="type" string="Type"/>
+                            </group>
+                        </group>
+                  
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                
+                </form>
+            </field>
+        </record>
+
+        <!-- Liste des terrains -->
+        <record id="view_football_terrain_tree" model="ir.ui.view">
+            <field name="name">Arbre des Terrains</field>
+            <field name="model">kickapp.terrain</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Nom"/>
+                    <field name="available" string="Disponible"/>
+                    <field name="capacity" string="Capacité"/>
+                    <field name="category" string="Catégorie"/>
+                    <field name="type" string="Type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action pour la gestion des terrains -->
+        <record id="action_football_management" model="ir.actions.act_window">
+            <field name="name">Gestion des Terrains</field>
+            <field name="res_model">kickapp.terrain</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_id" ref="view_football_terrain_tree"/>
+        </record>
+
+    </data>
+</odoo>

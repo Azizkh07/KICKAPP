@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_form_club_subscription" model="ir.ui.view">
+        <field name="name">club.subscription.form</field>
+        <field name="model">kickapp.club.subscription</field>
+        <field name="arch" type="xml">
+            <form string="Club Subscription">
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="club_id"/>
+                        <field name="state"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_club_subscription" model="ir.ui.view">
+        <field name="name">club.subscription.tree</field>
+        <field name="model">kickapp.club.subscription</field>
+        <field name="arch" type="xml">
+            <tree string="Club Subscription">
+                <field name="club_id"/>
+                <field name="state"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_club_subscription" model="ir.actions.act_window">
+        <field name="name">Club Subscriptions</field>
+        <field name="res_model">kickapp.club.subscription</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

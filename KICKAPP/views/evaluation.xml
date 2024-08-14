@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vue liste des évaluations -->
+    <record id="view_football_evaluation_tree" model="ir.ui.view">
+        <field name="name">Arbre des Évaluations</field>
+        <field name="model">kickapp.evaluation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="player_id" string="Joueur"/>
+                <field name="coach_id" string="Entraîneur"/>
+                <field name="speed" string="Vitesse"/>
+                <field name="dribbling" string="Dribble"/>
+                <field name="matches_played" string="Matchs Joués"/>
+                <field name="goals" string="Buts"/>
+                <field name="total_rating" string="Note Totale"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue formulaire des évaluations -->
+    <record id="view_football_evaluation_form" model="ir.ui.view">
+        <field name="name">Formulaire d'Évaluation</field>
+        <field name="model">kickapp.evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Ajoutez des boutons ou actions supplémentaires ici -->
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="player_id" readonly="1" string="Joueur"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="player_id" string="Joueur"/>
+                        <field name="coach_id" string="Entraîneur"/>
+                        <field name="speed" string="Vitesse"/>
+                        <field name="dribbling" string="Dribble"/>
+                        <field name="matches_played" string="Matchs Joués"/>
+                        <field name="goals" string="Buts"/>
+                        <field name="total_rating" string="Note Totale" readonly="1"/>
+                        <field name="feedback" string="Commentaires"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action pour le modèle d'évaluation -->
+    <record id="action_football_evaluation" model="ir.actions.act_window">
+        <field name="name">Évaluation</field>
+        <field name="res_model">kickapp.evaluation</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="view_football_evaluation_tree"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kickapp_terrain,Terrain Access,model_kickapp_terrain,base.group_user,1,1,1,1
+access_kickapp_reservation,Reservation Access,model_kickapp_reservation,base.group_user,1,1,1,1
+access_kickapp_joueur,Joueur Access,model_kickapp_joueur,base.group_user,1,1,1,1
+access_kickapp_club,Club Access,model_kickapp_club,base.group_user,1,1,1,1
+access_kickapp_coach,Coach Access,model_kickapp_coach,base.group_user,1,1,1,1
+access_kickapp_evaluation,Evaluation Access,model_kickapp_evaluation,base.group_user,1,1,1,1
+access_kickapp_match,Match Access,model_kickapp_match,base.group_user,1,1,1,1
+access_kickapp_tournoi,Tournament Access,model_kickapp_tournament,base.group_user,1,1,1,1
+access_kickapp_abonnes_club,Club Subscriber Access,model_kickapp_club_subscriber,base.group_user,1,1,1,1
+access_kickapp_calendrier_club,Club Event Access,model_kickapp_club_event,base.group_user,1,1,1,1
+access_kickapp_cassier,Cassier Access,model_kickapp_cassier,base.group_user,1,1,1,1
+access_kickapp_manager,Manager Access,model_kickapp_manager,base.group_user,1,1,1,1
+access_kickapp_inscri_club,Insri Club Access,model_kickapp_club_subscription,base.group_user,1,1,1,1

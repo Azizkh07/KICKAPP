@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vue pour le tournoi kickapp -->
+    <record id="view_kickapp_tournament_form" model="ir.ui.view">
+        <field name="name">Formulaire de Tournoi de Football</field>
+        <field name="model">kickapp.tournament</field>
+        <field name="arch" type="xml">
+            <form string="Tournoi de Football">
+                <sheet>
+                    <group>
+                        <field name="name" string="Nom"/>
+                        <field name="start_date" string="Date de début"/>
+                        <field name="end_date" string="Date de fin"/>
+                        <field name="club_ids" string="Clubs"/>
+                    </group>
+                    <notebook>
+                        <page string="Matchs">
+                            <field name="match_ids" widget="many2many_tags" string="Matchs"/>
+                        </page>
+                        <!-- Ajoutez d'autres pages pour d'autres informations liées au tournoi si nécessaire -->
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue arborescente pour kickappTournament -->
+    <record id="view_kickapp_tournament_tree" model="ir.ui.view">
+        <field name="name">Arbre des Tournois</field>
+        <field name="model">kickapp.tournament</field>
+        <field name="arch" type="xml">
+            <tree string="Tournois">
+                <field name="name" string="Nom"/>
+                <field name="start_date" string="Date de début"/>
+                <field name="end_date" string="Date de fin"/>
+                <field name="club_ids" string="Clubs"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action pour kickappTournament -->
+    <record id="action_kickapp_tournament" model="ir.actions.act_window">
+        <field name="name">Tournois</field>
+        <field name="res_model">kickapp.tournament</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_id" ref="view_kickapp_tournament_tree"/>
+    </record>
+
+</odoo>

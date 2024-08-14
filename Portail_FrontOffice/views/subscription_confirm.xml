@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="subscription_confirmation_template">
+        <t t-call="portal.portal_layout">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Confirmation d'Abonnement</h5>
+                                <hr/>
+                                <p>Merci pour votre abonnement au club <strong><t t-out="subscription.club_id.name"/></strong>.</p>
+                                <p>Votre abonnement est valide jusqu'au <strong><t t-out="subscription.end_date"/></strong>.</p>
+                                <a href="/my/clubs" class="btn btn-primary">Retour aux Clubs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+</odoo>

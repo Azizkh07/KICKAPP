@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+ <record id="view_football_reservation_graph" model="ir.ui.view">
+        <field name="name">Graphique des Réservations</field>
+        <field name="model">kickapp.reservation</field>
+        <field name="arch" type="xml">
+            <graph string="Réservations par Mois" type="bar">
+                <field name="date" type="month"/>
+                <field name="id" type="count"/>
+            </graph>
+        </field>
+    </record>
+
+
+    <record id="act_football_reservation" model="ir.actions.act_window">
+        <field name="name">Réservation en Ligne</field>
+        <field name="res_model">kickapp.reservation</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_football_reservation_graph"/>
+
+    </record>
+
+
+
+    <record id="view_joueur_graph" model="ir.ui.view">
+        <field name="name">Graphique des Joueurs</field>
+        <field name="model">kickapp.joueur</field>
+        <field name="arch" type="xml">
+            <graph string="Nombre de Joueurs par Âge" type="bar">
+                <field name="age" type="row"/>
+                <field name="id" type="count"/>
+            </graph>
+        </field>
+    </record>
+    
+
+    <record id="act_football_joueur" model="ir.actions.act_window">
+        <field name="name">Joueurs de Football</field>
+        <field name="res_model">kickapp.joueur</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_joueur_graph"/>
+    </record>
+
+
+
+
+
+    
+    <record id="view_coach_graph" model="ir.ui.view">
+        <field name="name">Graphique des Coachs</field>
+        <field name="model">kickapp.coach</field>
+        <field name="arch" type="xml">
+            <graph string="Nombre de Coachs" type="bar">
+                <field name="id" type="count"/>
+            </graph>
+        </field>
+    </record>
+
+    
+    <record id="act_football_coach" model="ir.actions.act_window">
+        <field name="name">Coachs</field>
+        <field name="res_model">kickapp.coach</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_coach_graph"/>
+    
+    </record>
+
+
+    <record id="view_club_graph" model="ir.ui.view">
+        <field name="name">Graphique des Clubs</field>
+        <field name="model">kickapp.club</field>
+        <field name="arch" type="xml">
+            <graph string="Nombre de Clubs" type="bar">
+                <field name="id" type="count"/>
+            </graph>
+        </field>
+    </record>
+
+
+
+    <record id="act_football_club" model="ir.actions.act_window">
+        <field name="name">Clubs de Football</field>
+        <field name="res_model">kickapp.club</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_club_graph"/>
+    </record>
+
+
+
+
+
+
+
+
+    <record id="dashboard_form_view" model="ir.ui.view">
+        <field name="name">Formulaire de Tableau de Bord</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+           
+                    <form string="Tableau de Bord">
+                     <board style="1-2">
+                        <column>
+                            <action   
+                            string="Réservation Terrain"
+                            name="%(act_football_reservation)d" 
+                            web_icon="fa-calendar"
+                            />
+                            <action   
+                            string="Joueurs"
+                            name="%(act_football_joueur)d" 
+                            web_icon="fa-users"
+                            />
+                        </column>
+                        <column>
+                            <action   
+                            string="Entraîneur"
+                            name="%(act_football_coach)d"
+                            web_icon="fa-user-tie" 
+                            />
+                            <action   
+                            string="Clubs"
+                            name="%(act_football_club)d"
+                            web_icon="fa-building" 
+                            />
+                        </column>
+
+                     </board>
+                    </form>
+            </field>
+            </record>
+
+
+
+
+
+    <record id="kickapp_dashboard" model="ir.actions.act_window">
+        <field name="name">Tableau de Bord</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="dashboard_form_view"/>
+    </record>
+
+       
+   
+    
+
+    
+
+   
+        <menuitem
+        id="menu_dashboard"
+        parent="menu_football_root"
+        action="kickapp_dashboard"
+        name="Tableau de Bord"
+        sequence="1"/>
+
+
+
+
+
+   
+
+
+       
+</odoo>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Portal Home Modification -->
+    <template id="portal_my_home_kickapp_club" name="My Portal" customize_show="True" inherit_id="portal.portal_my_home" priority="4">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Clubs</t>
+                    <t t-set="url" t-value="'/my/clubs'"/>
+                    <t t-set="placeholder_count" t-value="'clubs_count'"/>
+                </t>
+        </xpath>
+    </template>
+
+    <!-- Breadcrumbs Modification -->
+    <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'Clubs_list_view'" class="breadcrumb-item">Clubs</li>
+            <li t-if="page_name == 'Clubs_form_view'" class="breadcrumb-item">
+                <a href="/my/clubs">Clubs</a>
+            </li>
+        </xpath>
+    </template>
+     <!-- Club List View -->
+     <template id="kickapp_clubs_list_view_portal">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Clubs</t>
+            </t>
+            <style>
+                .club-logo {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+                .card {
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.2s ease-in-out;
+                }
+                .card:hover {
+                    transform: translateY(-5px);
+                }
+            </style>
+            <div class="container py-5">
+                <div class="row">
+                    <t t-foreach="clubs" t-as="club">
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img t-attf-src="data:image/png;base64,{{club.image}}" class="card-img-top club-logo" alt="Club Logo" />
+                                <div class="card-body text-center">
+                                    <h5 class="card-title"><t t-out="club.name"/></h5>
+                                    <a t-att-href="'/my/subscribe_club?club_id=%d' % club.id" class="btn btn-primary">Payer Abonnement</a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Club Form View -->
+    <template id="kickapp_club_form_view_portal">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_breadcrumbs">
+                <t t-set="page_name">Clubs_form_view</t>
+            </t>
+            <style>
+                .club-logo {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+                .card {
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.2s ease-in-out;
+                }
+                .card:hover {
+                    transform: translateY(-5px);
+                }
+            </style>
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="card mb-4">
+                            <img t-attf-src="data:image/png;base64,{{club.image}}" class="card-img-top club-logo" alt="Club Logo" />
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><t t-out="club.name"/></h5>
+                                <hr/>
+                                <form action="/my/submit_subscribe_club" method="POST">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="club_id" t-att-value="club.id"/>
+                                    <button type="submit" class="btn btn-success">Payer Abonnement</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

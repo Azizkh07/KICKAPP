@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="res_partner_view_form" model="ir.ui.view">
+    <field name="name">res.partner.view.form.inherit.kickapp</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='vat']" position="after">
+            <field name="membre" string="Membre Kickapp"/>
+            <field name="is_coach" string="Est Entraîneur"/>
+            <field name="is_joueur" string="Est Joueur"/>
+            <field name="is_abonne_club" string="Est Abonné du Club"/>
+            <field name="is_recruiter" string="Est Recruteur"/>
+
+        </xpath>
+
+         
+        
+    </field>
+</record>
+
+
+    <record id="res_partner_kanban" model="ir.ui.view">
+        <field name="name">res.partner.kanban.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_partner_categories')]" position="replace">
+                <div>
+                    <ul>
+
+                        <li t-if="record.is_coach.raw_value">
+                            Entraîneur
+                            <field name="is_coach" invisible="1" />
+                        </li>
+
+                        <li t-if="record.is_joueur.raw_value">
+                            Joueur
+                            <field name="is_joueur" invisible="1" />
+                        </li>
+                      
+                        <li t-if="record.is_abonne_club.raw_value">
+                            Abonné du Club
+                            <field name="is_abonne_club" invisible="1" />
+                            <li>
+                              
+                        <div class="oe_title" style="color:Brown;font-size: 15px;">
+                            Abonnement Club:
+                            <field name="club_subscription_count"/>
+                        </div>
+                            </li>
+
+                        </li>
+                        <li t-if="record.is_recruiter.raw_value">
+                            Recruteur des Talents
+                            <field name="is_recruiter" invisible="1" />
+                        </li>
+
+
+
+                   
+
+                      
+                    </ul>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    </odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="403_page" name="403 Access Denied">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="alert alert-danger mt16 mb16">
+                    <h2>403 - Access Denied</h2>
+                    <p>You do not have the necessary permissions to access this page.</p>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        
+<!-- Vue pour la liste des entraîneurs -->
+
+<record id="view_football_coach_tree" model="ir.ui.view">
+    <field name="name">Arborescence des Entraîneurs</field>
+    <field name="model">kickapp.coach</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name" string="Nom"/>
+            <field name="club_ids" string="Clubs"/>
+            <field name="evaluation_ids" string="Évaluations"/>
+            <field name="image" string="Image" widget="image" options='{"size": [70, 70]}'/>
+
+        </tree>
+    </field>
+</record>
+<!-- Vue pour le formulaire d'entraîneur -->
+
+
+<record id="view_kickapp_coach_form" model="ir.ui.view">
+    <field name="name">Formulaire d'Entraîneur</field>
+    <field name="model">kickapp.coach</field>
+    <field name="arch" type="xml">
+        <form string="Coach Form">
+            <header>
+                <button name="create_internal_user" string="Créer Utilisateur Interne" type="object" class="btn-primary"/>
+            </header>
+         
+            <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1" string="Nom"/>
+                    </h1>
+                </div>
+                <group>
+                    <field name="name" string="Nom"/>
+                    <field name="club_ids" string="Clubs"/>
+                    <field name="evaluation_ids" string="Évaluations" widget="many2many_tags"/>
+                    <field name="image" string="Image" widget="image" options='{"size": [70, 70]}'/>
+                    <field name="user_id" readonly="1"/>
+                </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+            </div>
+            
+        </form>
+    </field>
+</record>
+
+<!-- Action pour le modèle Entraîneur-->
+<record id="action_football_coach" model="ir.actions.act_window">
+    <field name="name">Entraîneurs</field>
+    <field name="res_model">kickapp.coach</field>
+    <field name="view_mode">tree,form,kanban</field>
+    <field name="view_id" ref="view_football_coach_tree"/>
+
+</record>
+
+</odoo>
